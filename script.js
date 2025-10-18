@@ -1,3 +1,7 @@
+const API = location.hostname.includes('localhost')
+  ? 'http://localhost:3000'
+  : 'https://twofa-5ek9.onrender.com';
+
 function toggleRegister(showRegister) {
   document.getElementById("code-container").classList.add("hidden");
   document.getElementById("success-container").classList.add("hidden");
@@ -16,7 +20,7 @@ async function register() {
   const password = document.getElementById("reg-password").value;
   const email = document.getElementById("reg-email").value;
 
-  const response = await fetch("http://localhost:3000/register", {
+  const response = await fetch(`${API}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password, email }),
@@ -37,7 +41,7 @@ async function checkLogin() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const response = await fetch("http://localhost:3000/login", {
+  const response = await fetch(`${API}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -59,7 +63,7 @@ async function verifyCode() {
   const username = document.getElementById("username").value;
   const code = document.getElementById("code").value;
 
-  const response = await fetch("http://localhost:3000/verify", {
+  const response = await fetch(`${API}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, code }),

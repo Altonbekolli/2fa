@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2FA Login</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <!-- LOGIN -->
+  <div class="container" id="login-container">
+    <h1>> Zugang zum System</h1>
+    <input type="text" id="username" placeholder="Benutzername" />
+    <input type="password" id="password" placeholder="Passwort" />
+    <button onclick="checkLogin()">Zugang anfordern</button>
+  </div>
+
+  <!-- REGISTRIERUNG -->
+  <div class="container hidden" id="register-container">
+    <h1>> Benutzer registrieren</h1>
+    <input type="text" id="reg-username" placeholder="Benutzername" />
+    <input type="password" id="reg-password" placeholder="Passwort" />
+    <input type="email" id="reg-email" placeholder="E-Mail-Adresse" />
+    <button onclick="register()">Registrieren</button>
+  </div>
+
+  <!-- 2FA-CODE -->
+  <div class="container hidden" id="code-container">
+    <h1>Zwei-Faktor-Code</h1>
+    <p>Bitte gib den 6-stelligen Code ein:</p>
+    <input type="text" id="code" placeholder="z. B. 123456" maxlength="6" />
+    <button onclick="verifyCode()">Bestätigen</button>
+  </div>
+
+  <!-- ZUGANG GEWÄHRT -->
+  <div class="container hidden" id="success-container">
+    <h1>Willkommen zu meinem WSeminar!</h1>
+    <p>Hier könnte alles mögliche drinenn stehen..</p>
+    <button class="buttonLogout"onclick="logout()">Abmelden</button>
+  </div>
+
+  <!-- LINK UMSCHALTEN -->
+  <p class="switch">
+    Noch kein Account?
+    <a href="#" onclick="toggleRegister(true)">Registrieren</a> |
+    <a href="#" onclick="toggleRegister(false)">Login</a>
+  </p>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,6 +1,13 @@
-const API = location.hostname.includes('localhost')
+const host = location.hostname;
+const isLocal =
+  host === 'localhost' ||
+  host === '127.0.0.1' ||
+  host.endsWith('.local');
+
+const API = isLocal
   ? 'http://localhost:3000'
   : 'https://twofa-5ek9.onrender.com';
+
 
 function toggleRegister(showRegister) {
   document.getElementById("code-container").classList.add("hidden");
@@ -41,7 +48,7 @@ async function checkLogin() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const response = await fetch(`${API}/register`, {
+  const response = await fetch(`${API}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -63,7 +70,7 @@ async function verifyCode() {
   const username = document.getElementById("username").value;
   const code = document.getElementById("code").value;
 
-  const response = await fetch(`${API}/register`, {
+  const response = await fetch(`${API}/verify`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, code }),

@@ -124,3 +124,12 @@ app.post("/verify", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server läuft auf http://localhost:${PORT}`);
 });
+
+// Login OHNE 2FA (neu)
+app.post("/login-simple", (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username && u.password === password);
+  if (!user) return res.status(401).json({ message: "Login fehlgeschlagen" });
+  return res.json({ message: "Login erfolgreich" });
+});
+
